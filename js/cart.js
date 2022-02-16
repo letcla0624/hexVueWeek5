@@ -112,7 +112,6 @@ const app = Vue.createApp({
         product_id: item.product_id,
         qty: this.qty,
       };
-      console.log("updateToCart =>", data);
       axios
         .put(`${api_url}/api/${api_path}/cart/${item.id}`, { data })
         .then((res) => {
