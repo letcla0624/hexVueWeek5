@@ -107,10 +107,12 @@ const app = Vue.createApp({
     // 更新購物車
     updateToCart(item) {
       this.isLoading = item.id;
+      this.qty = item.qty;
       const data = {
         product_id: item.product_id,
-        qty: item.qty,
+        qty: this.qty,
       };
+      console.log("updateToCart =>", data);
       axios
         .put(`${api_url}/api/${api_path}/cart/${item.id}`, { data })
         .then((res) => {
