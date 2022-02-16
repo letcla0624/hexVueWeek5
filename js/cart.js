@@ -107,10 +107,9 @@ const app = Vue.createApp({
     // 更新購物車
     updateToCart(item) {
       this.isLoading = item.id;
-      this.qty = item.qty;
       const data = {
         product_id: item.product_id,
-        qty: this.qty,
+        qty: item.qty,
       };
       axios
         .put(`${api_url}/api/${api_path}/cart/${item.id}`, { data })
@@ -154,6 +153,7 @@ const app = Vue.createApp({
             `${res.data.message}, 訂單編號：${res.data.create_at}, 總金額：${res.data.total}`
           );
           this.$refs.form.resetForm();
+          this.form.message = "";
           this.getCart();
         })
         .catch((err) => {
